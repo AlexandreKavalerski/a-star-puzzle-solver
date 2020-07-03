@@ -5,13 +5,18 @@
   "main": "dist/index.js",
   "dependencies": {},
   "devDependencies": {
+    "@types/chai": "^4.2.11",
+    "@types/mocha": "^7.0.2",
+    "chai": "^4.2.0",
+    "mocha": "^8.0.1",
     "nodemon": "^2.0.4",
+    "ts-node": "^8.10.2",
     "typescript": "^3.9.6"
   },
   "scripts": {
     "start:ts": "tsc --watch",
     "start:js": "nodemon ./dist/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha --require ts-node/register --extensions ts,tsx --watch --watch-files src 'tests/**/*.{ts,tsx}'"
   },
   "author": "Alexandre Kavalerski",
   "license": "MIT"
