@@ -19,7 +19,7 @@ function applyOperation(state: State, op: operations){
     }
 }
 
-function moveUpOperation(state: State){
+function moveUpOperation(state: State): State | null{
     const nullPosition = getPositionOfNullItem(state);
     const newLinePosition = nullPosition.line - 1;
     if(newLinePosition >= 0){
@@ -29,7 +29,7 @@ function moveUpOperation(state: State){
     return null;
 }
 
-function moveRightOperation(state: State){
+function moveRightOperation(state: State): State | null{
     const nullPosition = getPositionOfNullItem(state);
     
     const newColPosition = nullPosition.col + 1;
@@ -40,7 +40,7 @@ function moveRightOperation(state: State){
     return null;
 }
 
-function moveDownOperation(state: State){
+function moveDownOperation(state: State): State | null{
     const nullPosition = getPositionOfNullItem(state);
     const newLinePosition = nullPosition.line + 1;
     if(newLinePosition <= 2){
@@ -50,7 +50,7 @@ function moveDownOperation(state: State){
     return null;
 }
 
-function moveLeftOperation(state: State){
+function moveLeftOperation(state: State): State | null{
     const nullPosition = getPositionOfNullItem(state);
 
     const newColPosition = nullPosition.col - 1;
@@ -72,14 +72,24 @@ function getPositionOfNullItem(state: State){
     throw new Error('Error: null item not found on state');
 }
 
-function changePositions(actualPosition: StateItemPosition, newPosition: StateItemPosition, state: State){
-    const newState = [...state];
+function changePositions(actualPosition: StateItemPosition, newPosition: StateItemPosition, state: State): State{
+    const newState: State = cloneState(state); //TODO: Encontrar uma estratégia otimizada pra clonar o array do estado
     const aux = state[newPosition.line][newPosition.col];
 
     newState[newPosition.line][newPosition.col] = null;
     newState[actualPosition.line][actualPosition.col] = aux;
-
+    
     return newState
+}
+
+function cloneState(state: State){
+    let newState: State = [[null, null, null], [null, null, null], [null, null, null]];
+    for (let l in state){
+        for (let c in state){
+            newState[l][c] = state[l][c];
+        }
+    }
+    return newState;
 }
 
 export { applyOperation, moveUpOperation, moveRightOperation, moveDownOperation, moveLeftOperation, getPositionOfNullItem }
