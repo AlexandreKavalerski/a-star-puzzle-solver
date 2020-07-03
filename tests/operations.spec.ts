@@ -63,5 +63,47 @@ describe('Testing returns of applyOperation function', () => {
         const goalState: State = [[null,5,8], [4,1,6], [7, 2, 3]];
         expect(applyOperation(actualState, operations.up)).to.eql(goalState);
     });
+    
+    it('should return correct state when call applyOperation function when using movUp operation', () => {
+        const actualState: State = [[1,2,3], [4,5,6], [7, 8, null]];
+        const goalState: State = [[1,2,3], [4,5,null], [7, 8, 6]];
+        expect(applyOperation(actualState, operations.up)).to.eql(goalState);
+    });
+
+    it('should return correct state when call applyOperation function when using movRight operation', () => {
+        const actualState: State = [[4,5,8], [null,1,6], [7, 2, 3]];
+        const goalState: State = [[4,5,8], [1,null,6], [7, 2, 3]];
+        expect(applyOperation(actualState, operations.right)).to.eql(goalState);
+    });
+
+    it('should return correct state when call applyOperation function when using movRight operation', () => {
+        const actualState: State = [[null,5,8], [4,1,6], [7, 2, 3]];
+        const goalState: State = [[5,null,8], [4,1,6], [7, 2, 3]];
+        expect(applyOperation(actualState, operations.right)).to.eql(goalState);
+    });
+
+    it('should return correct state when call applyOperation function when using movDown operation', () => {
+        const actualState: State = [[null,5,8], [4,1,6], [7, 2, 3]];
+        const goalState: State = [[4,5,8], [null,1,6], [7, 2, 3]];
+        expect(applyOperation(actualState, operations.down)).to.eql(goalState);
+    });
+
+    it('should return correct state when call applyOperation function when using movDown operation', () => {
+        const actualState: State = [[1,2,3], [4,null,6], [7, 5, 8]];
+        const goalState: State = [[1,2,3], [4,5,6], [7, null, 8]];
+        expect(applyOperation(actualState, operations.down)).to.eql(goalState);
+    });
+
+    it('should return correct state when call applyOperation function when using movLeft operation', () => {
+        const actualState: State = [[1,2,3], [4,null,6], [7, 5, 8]];
+        const goalState: State = [[1,2,3], [null,4,6], [7, 5, 8]];
+        expect(applyOperation(actualState, operations.left)).to.eql(goalState);
+    });
+
+    it('should return correct state when call applyOperation function when using movLeft operation', () => {
+        const actualState: State = [[5,8,null], [4,1,6], [7, 2, 3]];
+        const goalState: State = [[5,null,8], [4,1,6], [7, 2, 3]];
+        expect(applyOperation(actualState, operations.left)).to.eql(goalState);
+    });
 
 });
