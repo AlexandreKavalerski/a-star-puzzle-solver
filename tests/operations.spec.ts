@@ -4,7 +4,7 @@ import { State, StateItem } from "../src/utils/state";
 import { operations } from '../src/utils/operations';
 import StateItemPosition from '../src/classes/StateItemPosition';
 
-describe('Smoke Tests', () => {
+describe('Operations Smoke Tests', () => {
     it('should exist applyOperation function', () => {
         expect(applyOperation).to.exist;
     });
