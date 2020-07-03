@@ -1,10 +1,12 @@
+import { State } from "./State";
+
 class NodeInfo {
     evaluationFunctionValue: number;
     operation: string; // TODO: usar types/enum pra permitir somente operações válidas
-    state: number[][] // TODO: usar types/tuplas pra permitir somente números válidos
-    previousNode?: NodeInfo
+    state: State;
+    previousNode?: NodeInfo;
 
-    constructor(efValue: number, op: string, s: number[][], prev: NodeInfo){
+    constructor(efValue: number, op: string, s: State, prev: NodeInfo){
         this.evaluationFunctionValue = efValue
         this.operation = op
         this.state = s
