@@ -105,5 +105,31 @@ describe('Testing returns of applyOperation function', () => {
         const goalState: State = [[5,null,8], [4,1,6], [7, 2, 3]];
         expect(applyOperation(actualState, operations.left)).to.eql(goalState);
     });
+});
 
+describe('Testing returns of applyOperation function when operation cannot be applied', () => {  
+
+    it('should return null when call applyOperation function using movUp operation', () => {
+        const actualState: State = [[null,5,8], [4,1,6], [7, 2, 3]];
+
+        expect(applyOperation(actualState, operations.up)).to.eql(null);
+    });
+
+    it('should return null when call applyOperation function using movRight operation', () => {
+        const actualState: State = [[5,8,6], [4,1,null], [7, 2, 3]];
+
+        expect(applyOperation(actualState, operations.right)).to.eql(null);
+    });
+
+    it('should return null when call applyOperation function using movDown operation', () => {
+        const actualState: State = [[5,8,6], [4,1,3], [7, null, 2]];
+
+        expect(applyOperation(actualState, operations.down)).to.eql(null);
+    });
+
+    it('should return null when call applyOperation function using movLeft operation', () => {
+        const actualState: State = [[5,8,6], [null,4,1], [7, 3, 2]];
+
+        expect(applyOperation(actualState, operations.left)).to.eql(null);
+    });
 });

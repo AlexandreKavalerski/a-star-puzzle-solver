@@ -26,6 +26,7 @@ function moveUpOperation(state: State){
         const newPosition = new StateItemPosition(newLinePosition, nullPosition.col);
         return changePositions(nullPosition, newPosition, state);        
     }
+    return null;
 }
 
 function moveRightOperation(state: State){
@@ -36,6 +37,7 @@ function moveRightOperation(state: State){
         const newPosition = new StateItemPosition(nullPosition.line, newColPosition);
         return changePositions(nullPosition, newPosition, state);
     }
+    return null;
 }
 
 function moveDownOperation(state: State){
@@ -45,6 +47,7 @@ function moveDownOperation(state: State){
         const newPosition = new StateItemPosition(newLinePosition, nullPosition.col);
         return changePositions(nullPosition, newPosition, state);        
     }
+    return null;
 }
 
 function moveLeftOperation(state: State){
@@ -55,6 +58,7 @@ function moveLeftOperation(state: State){
         const newPosition = new StateItemPosition(nullPosition.line, newColPosition);
         return changePositions(nullPosition, newPosition, state);
     }
+    return null;
 }
 
 
