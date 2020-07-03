@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import { calcHeuristicValue, calcDistanceOfItem } from "../src/functions/heuristic";
 import { State, StateItem } from '../src/classes/State';
 
-describe('Smoke Tests', () => { // the tests container
+describe('Heuristic Smoke Tests', () => { // the tests container
     it('should exist calcHeuristicValue function', () => {
         expect(calcHeuristicValue).to.exist;
     });
