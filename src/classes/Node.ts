@@ -1,12 +1,13 @@
 import { State } from "../utils/state";
+import { operations } from "../utils/operations";
 
 class NodeInfo {
     evaluationFunctionValue: number;
-    operation: string; // TODO: usar types/enum pra permitir somente operações válidas
+    operation: operations;
     state: State;
     previousNode?: NodeInfo;
 
-    constructor(efValue: number, op: string, s: State, prev: NodeInfo){
+    constructor(efValue: number, op: operations, s: State, prev?: NodeInfo){
         this.evaluationFunctionValue = efValue
         this.operation = op
         this.state = s
