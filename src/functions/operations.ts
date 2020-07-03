@@ -1,5 +1,6 @@
 import { State, StateItem } from "../utils/state";
 import { operations } from "../utils/operations";
+import StateItemPosition from "../classes/StateItemPosition";
 
 function applyOperation(state: State, op: operations){
     if(op == operations.up){
@@ -10,14 +11,14 @@ function applyOperation(state: State, op: operations){
 }
 
 function moveUpOperation(state: State){
-    const nullPosition = getPositionOfNullItem(state); //TODO: criar um type para ItemPosition
-    const newLinePosition = nullPosition[0] - 1;
+    const nullPosition = getPositionOfNullItem(state);
+    const newLinePosition = nullPosition.line - 1;
     if(newLinePosition >= 0){
 
         const newState: State = [... state];
-        const aux = state[newLinePosition][nullPosition[1]]
-        newState[newLinePosition][nullPosition[1]] = null;
-        newState[nullPosition[0]][nullPosition[1]] = aux;
+        const aux = state[newLinePosition][nullPosition.col]
+        newState[newLinePosition][nullPosition.col] = null;
+        newState[nullPosition.line][nullPosition.col] = aux;
         return newState;        
     }
 }
@@ -40,7 +41,7 @@ function getPositionOfNullItem(state: State){
     for (let line in state){
         let col = state[line].indexOf(null);
         if (col > -1){
-            return [Number(line), Number(col)]; //TODO: criar um type para ItemPosition
+            return new StateItemPosition(Number(line), Number(col));
         }
     }
     throw new Error('Error: null item not found on state');

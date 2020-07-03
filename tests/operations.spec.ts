@@ -2,6 +2,7 @@ import { expect, Assertion, util } from 'chai';
 import { applyOperation, moveUpOperation, moveRightOperation, moveDownOperation, moveLeftOperation, getPositionOfNullItem } from "../src/functions/operations";
 import { State, StateItem } from "../src/utils/state";
 import { operations } from '../src/utils/operations';
+import StateItemPosition from '../src/classes/StateItemPosition';
 
 describe('Smoke Tests', () => {
     it('should exist applyOperation function', () => {
@@ -38,17 +39,20 @@ describe('Testing returns of getPositionOfNullItem function', () => {
 
     it('should return [1,0] when call getPositionOfNullItem function', () => {
         const state: State = [[4,5,8], [null,1,6], [7, 2, 3]];
-        expect(getPositionOfNullItem(state)).to.eql([1, 0]);
+        const expectedPosition = new StateItemPosition(1,0);
+        expect(getPositionOfNullItem(state)).to.eql(expectedPosition);
     });
 
     it('should return [2,1] when call getPositionOfNullItem function', () => {
         const state: State = [[4,5,8], [3,1,6], [7, null, 2]];
-        expect(getPositionOfNullItem(state)).to.eql([2, 1]);
+        const expectedPosition = new StateItemPosition(2,1);
+        expect(getPositionOfNullItem(state)).to.eql(expectedPosition);
     });
 
     it('should return [0,0] when call getPositionOfNullItem function', () => {
         const state: State = [[null,5,8], [3,1,6], [7, 2, 4]];
-        expect(getPositionOfNullItem(state)).to.eql([0, 0]);
+        const expectedPosition = new StateItemPosition(0,0);
+        expect(getPositionOfNullItem(state)).to.eql(expectedPosition);
     });
 });
 

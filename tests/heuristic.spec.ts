@@ -1,6 +1,7 @@
 import { expect } from 'chai';
 import { calcHeuristicValue, calcDistanceOfItem } from "../src/functions/heuristic";
 import { State, StateItem } from '../src/utils/state';
+import StateItemPosition from '../src/classes/StateItemPosition';
 
 describe('Heuristic Smoke Tests', () => { // the tests container
     it('should exist calcHeuristicValue function', () => {
@@ -21,7 +22,7 @@ describe('Heuristic Smoke Tests', () => { // the tests container
     it('should return a number when call calcDistanceOfItem function', () => {
         const goalState: State = [[1,2,3], [4,5,6], [7, 8, null]];
         const item = 2;
-        const itemPosition = [2,1];
+        const itemPosition = new StateItemPosition(2, 1);
         expect(calcDistanceOfItem(item, itemPosition, goalState)).to.be.a('number');
     });
 });
@@ -30,21 +31,21 @@ describe('Testing returns of calcDistanceOfItem', () => {
     it('should return 2 when call calcDistanceOfItem', () => {
         const goalState: State = [[1,2,3], [4,5,6], [7, 8, null]];
         const item: StateItem = 2;
-        const itemPosition = [2,1];
+        const itemPosition = new StateItemPosition(2, 1);
         expect(calcDistanceOfItem(item, itemPosition, goalState)).to.equal(2);
     });
     
     it('should return 1 when call calcDistanceOfItem', () => {
         const goalState: State = [[1,2,3], [4,5,6], [7, 8, null]];
         const item: StateItem = 5;
-        const itemPosition = [0,1];
+        const itemPosition = new StateItemPosition(0, 1);
         expect(calcDistanceOfItem(item, itemPosition, goalState)).to.equal(1);
     });
     
     it('should return 3 when call calcDistanceOfItem', () => {
         const goalState: State = [[1,2,3], [4,5,6], [7, 8, null]];
         const item: StateItem = null;
-        const itemPosition = [1,0];
+        const itemPosition = new StateItemPosition(1, 0);
         expect(calcDistanceOfItem(item, itemPosition, goalState)).to.equal(3);
     });
 })
