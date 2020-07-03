@@ -3,4 +3,5 @@ export enum operations {
     right = 'RIGHT_OPERATION',
     down = 'DOWN_OPERATION',
     left = 'LEFT_OPERATION',
+    none = 'NONE',
 }
