@@ -1,4 +1,4 @@
-import { State } from "./State";
+import { State } from "../utils/state";
 
 class NodeInfo {
     evaluationFunctionValue: number;

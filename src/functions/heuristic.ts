@@ -1,4 +1,4 @@
-import { State, StateItem } from "../classes/State"
+import { State, StateItem } from "../utils/state"
 
 
 function calcHeuristicValue(actualState: State, goalState: State, gValue: number){

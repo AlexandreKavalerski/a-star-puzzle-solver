@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import { calcHeuristicValue, calcDistanceOfItem } from "../src/functions/heuristic";
-import { State, StateItem } from '../src/classes/State';
+import { State, StateItem } from '../src/utils/state';
 
 describe('Heuristic Smoke Tests', () => { // the tests container
     it('should exist calcHeuristicValue function', () => {
