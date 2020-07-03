@@ -3,17 +3,20 @@ import { operations } from "../utils/operations";
 import StateItemPosition from "../classes/StateItemPosition";
 
 function applyOperation(state: State, op: operations){
-    if(op == operations.up){
-        return moveUpOperation(state);
-    } else if (op == operations.right){
-        return moveRightOperation(state);
-    } else if(op == operations.down){
-        return moveDownOperation(state);
-    } else if (op == operations.left){
-        return moveLeftOperation(state);
+    switch (op){
+        case operations.up:
+            return moveUpOperation(state);
+            break;
+        case operations.right:
+            return moveRightOperation(state);
+            break;
+        case operations.down:
+            return moveDownOperation(state);
+            break;
+        case operations.left:
+            return moveLeftOperation(state);
+            break;
     }
-
-    return state;
 }
 
 function moveUpOperation(state: State){
@@ -53,7 +56,6 @@ function moveLeftOperation(state: State){
         return changePositions(nullPosition, newPosition, state);
     }
 }
-
 
 
 function getPositionOfNullItem(state: State){
