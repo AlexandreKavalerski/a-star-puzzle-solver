@@ -1,7 +1,6 @@
-import { State, StateItem } from "../utils/state"
 import StateItemPosition from "../classes/StateItemPosition";
 
-function calcHValue(actualState: State, goalState: State){
+function calcHValue(actualState: (number | null)[][], goalState: (number | null)[][]){
     let totalDistance = 0;
     for (let line in actualState){
         for (let col in actualState[line]){
@@ -12,7 +11,7 @@ function calcHValue(actualState: State, goalState: State){
     return totalDistance;
 }
 
-function calcDistanceOfItem(item: StateItem, itemPosition: StateItemPosition, goalState: State): number{
+function calcDistanceOfItem(item: (number | null), itemPosition: StateItemPosition, goalState: (number | null)[][]): number{
     for (let line in goalState){        
         let col = goalState[line].indexOf(item);
         if(col > -1){

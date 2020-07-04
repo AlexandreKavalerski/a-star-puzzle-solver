@@ -1,9 +1,7 @@
-import { State } from "../utils/state";
-
 
 // Using this function because literal comparison between 2 types (state1 == state2) always return false
 // TODO: melhorar formato de verificação
-function areEqual(state1: State, state2: State){ 
+function areEqual(state1: (number | null)[][], state2: (number | null)[][]){ 
     const equal = true;
     for (let l in state1){
         for (let c in state1){
@@ -16,7 +14,7 @@ function areEqual(state1: State, state2: State){
 }
 
 // TODO: melhorar formato de verificação
-function includes(state: State, list: State[]){
+function includes(state: (number | null)[][], list: (number | null)[][][]){
     for (let s of list){
         if(areEqual(s, state)){
             return true;
@@ -25,7 +23,7 @@ function includes(state: State, list: State[]){
     return false;
 }
 
-function readState(state: State){
+function readState(state: (number | null)[][]){
     console.log('---------');
     for(let l of state){
         console.log(l);

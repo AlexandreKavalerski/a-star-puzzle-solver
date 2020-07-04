@@ -1,23 +1,22 @@
 import { operations } from './utils/operations';
-import { State } from "./utils/state";
 import { NodeInfo } from "./classes/Node";
 import { generateNodeList, generateNode, readNode } from './functions/node';
 import { areEqual, includes } from './functions/state';
 
-const initialState: State = [[4,5,8], [5,4,6], [7, null, 8]];
-const finalState: State = [[1,2,3], [4,5,6], [7, 8, null]];
+const initialState: (number | null)[][] = [[4,5,8], [5,4,6], [7, null, 8]];
+const finalState: (number | null)[][] = [[1,2,3], [4,5,6], [7, 8, null]];
 
 const firstNode = generateNode(initialState, operations.none, finalState, 0);
 
 let frontier: NodeInfo[] = [firstNode];
-let expandedStates: State[] = [];
+let expandedStates: [] = [];
 
 
 
 const finalNode = run(finalState, frontier, expandedStates);
 readNode(finalNode);
 
-function run(goalState: State, frontier: NodeInfo[], expandedStates: State[]): NodeInfo{
+function run(goalState: (number | null)[][], frontier: NodeInfo[], expandedStates: (number | null)[][][]): NodeInfo{
     const actualNode = frontier.shift();
     if(actualNode){        
         if (areEqual(actualNode.state, goalState)){

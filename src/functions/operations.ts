@@ -1,8 +1,8 @@
-import { State, StateItem } from "../utils/state";
+
 import { operations } from "../utils/operations";
 import StateItemPosition from "../classes/StateItemPosition";
 
-function applyOperation(state: State, op: operations){
+function applyOperation(state: (number | null)[][], op: operations){
     switch (op){
         case operations.up:
             return moveUpOperation(state);
@@ -19,7 +19,7 @@ function applyOperation(state: State, op: operations){
     }
 }
 
-function moveUpOperation(state: State): State | null{
+function moveUpOperation(state: (number | null)[][]): (number | null)[][] | null{
     const nullPosition = getPositionOfNullItem(state);
     const newLinePosition = nullPosition.line - 1;
     if(newLinePosition >= 0){
@@ -29,7 +29,7 @@ function moveUpOperation(state: State): State | null{
     return null;
 }
 
-function moveRightOperation(state: State): State | null{
+function moveRightOperation(state: (number | null)[][]): (number | null)[][] | null{
     const nullPosition = getPositionOfNullItem(state);
     
     const newColPosition = nullPosition.col + 1;
@@ -40,7 +40,7 @@ function moveRightOperation(state: State): State | null{
     return null;
 }
 
-function moveDownOperation(state: State): State | null{
+function moveDownOperation(state: (number | null)[][]): (number | null)[][] | null{
     const nullPosition = getPositionOfNullItem(state);
     const newLinePosition = nullPosition.line + 1;
     if(newLinePosition <= 2){
@@ -50,7 +50,7 @@ function moveDownOperation(state: State): State | null{
     return null;
 }
 
-function moveLeftOperation(state: State): State | null{
+function moveLeftOperation(state: (number | null)[][]): (number | null)[][] | null{
     const nullPosition = getPositionOfNullItem(state);
 
     const newColPosition = nullPosition.col - 1;
@@ -62,7 +62,7 @@ function moveLeftOperation(state: State): State | null{
 }
 
 
-function getPositionOfNullItem(state: State){
+function getPositionOfNullItem(state: (number | null)[][]){
     for (let line in state){
         let col = state[line].indexOf(null);
         if (col > -1){
@@ -72,8 +72,8 @@ function getPositionOfNullItem(state: State){
     throw new Error('Error: null item not found on state');
 }
 
-function changePositions(actualPosition: StateItemPosition, newPosition: StateItemPosition, state: State): State{
-    const newState: State = cloneState(state); //TODO: Encontrar uma estratégia otimizada pra clonar o array do estado
+function changePositions(actualPosition: StateItemPosition, newPosition: StateItemPosition, state: (number | null)[][]): (number | null)[][]{
+    const newState: (number | null)[][] = cloneState(state); //TODO: Encontrar uma estratégia otimizada pra clonar o array do estado
     const aux = state[newPosition.line][newPosition.col];
 
     newState[newPosition.line][newPosition.col] = null;
@@ -82,8 +82,8 @@ function changePositions(actualPosition: StateItemPosition, newPosition: StateIt
     return newState
 }
 
-function cloneState(state: State){
-    let newState: State = [[null, null, null], [null, null, null], [null, null, null]];
+function cloneState(state: (number | null)[][]){
+    let newState: (number | null)[][] = [[null, null, null], [null, null, null], [null, null, null]];
     for (let l in state){
         for (let c in state){
             newState[l][c] = state[l][c];

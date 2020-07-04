@@ -1,12 +1,11 @@
 import { operations } from './../utils/operations';
 import { NodeInfo } from "../classes/Node"
-import { State } from '../utils/state';
 import { calcHValue } from './heuristic';
 import { applyOperation } from './operations';
 import HeuristicValue from '../classes/HeuristicValue';
 import { readState } from './state';
 
-function generateNodeList(node: NodeInfo, goalState: State): NodeInfo[]{
+function generateNodeList(node: NodeInfo, goalState: (number | null)[][]): NodeInfo[]{
     let childrenNodes: NodeInfo[] = [];
     const childUp = generateAndTest(operations.up, node, goalState, node.evaluationFunctionValue.g);
     if (childUp){
@@ -28,7 +27,7 @@ function generateNodeList(node: NodeInfo, goalState: State): NodeInfo[]{
     return childrenNodes;
 }
 
-function generateAndTest(op: operations, node: NodeInfo, goalState: State, gValue: number): NodeInfo | null{
+function generateAndTest(op: operations, node: NodeInfo, goalState: (number | null)[][], gValue: number): NodeInfo | null{
     const newState = applyOperation(node.state, op);
     if(newState){
         return generateNode(newState, op, goalState, (gValue+1), node);
@@ -36,7 +35,7 @@ function generateAndTest(op: operations, node: NodeInfo, goalState: State, gValu
     return null;
 }
 
-function generateNode(state: State, op: operations, goalState: State, gValue: number, previousNode?: NodeInfo): NodeInfo{
+function generateNode(state: (number | null)[][], op: operations, goalState: (number | null)[][], gValue: number, previousNode?: NodeInfo): NodeInfo{
     const hValue = calcHValue(state, goalState);
     const heuristicValue = new HeuristicValue(gValue, hValue);
     return new NodeInfo(heuristicValue, op, state, previousNode);
