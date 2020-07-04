@@ -1,29 +1,30 @@
 import { operations } from './../utils/operations';
 import { NodeInfo } from "../classes/Node"
 import { State } from '../utils/state';
-import { calcHeuristicValue } from './heuristic';
+import { calcHValue } from './heuristic';
 import { applyOperation } from './operations';
+import HeuristicValue from '../classes/HeuristicValue';
 
-function generateNodeList(node: NodeInfo, goalState: State, gValue: number): NodeInfo[]{
+function generateNodeList(node: NodeInfo, goalState: State): NodeInfo[]{
     let childrenNodes: NodeInfo[] = [];
-    const childUp = generateAndTest(operations.up, node, goalState, gValue);
+    const childUp = generateAndTest(operations.up, node, goalState, node.evaluationFunctionValue.g);
     if (childUp){
         childrenNodes.push(childUp);
     }
-    const childRight = generateAndTest(operations.right, node, goalState, gValue);
+    const childRight = generateAndTest(operations.right, node, goalState, node.evaluationFunctionValue.g);
     if (childRight){
         childrenNodes.push(childRight);
     }
-    const childDown = generateAndTest(operations.down, node, goalState, gValue);
+    const childDown = generateAndTest(operations.down, node, goalState, node.evaluationFunctionValue.g);
     if (childDown){
         childrenNodes.push(childDown);
     }
-    const childLeft = generateAndTest(operations.left, node, goalState, gValue);
+    const childLeft = generateAndTest(operations.left, node, goalState, node.evaluationFunctionValue.g);
     if (childLeft){
         childrenNodes.push(childLeft);
     }
        
-    return childrenNodes.sort((a, b) => (a.evaluationFunctionValue < b.evaluationFunctionValue) ? -1 : 1);
+    return childrenNodes;
 }
 
 function generateAndTest(op: operations, node: NodeInfo, goalState: State, gValue: number): NodeInfo | null{
@@ -35,7 +36,8 @@ function generateAndTest(op: operations, node: NodeInfo, goalState: State, gValu
 }
 
 function generateNode(state: State, op: operations, goalState: State, gValue: number, previousNode?: NodeInfo): NodeInfo{
-    const heuristicValue = calcHeuristicValue(state, goalState, gValue);
+    const hValue = calcHValue(state, goalState);
+    const heuristicValue = new HeuristicValue(gValue, hValue);
     return new NodeInfo(heuristicValue, op, state, previousNode);
 }
 

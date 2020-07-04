@@ -1,13 +1,14 @@
 import { State } from "../utils/state";
 import { operations } from "../utils/operations";
+import HeuristicValue from "./HeuristicValue";
 
 class NodeInfo {
-    evaluationFunctionValue: number;
+    evaluationFunctionValue: HeuristicValue;
     operation: operations;
     state: State;
     previousNode?: NodeInfo;
 
-    constructor(efValue: number, op: operations, s: State, prev?: NodeInfo){
+    constructor(efValue: HeuristicValue, op: operations, s: State, prev?: NodeInfo){
         this.evaluationFunctionValue = efValue
         this.operation = op
         this.state = s

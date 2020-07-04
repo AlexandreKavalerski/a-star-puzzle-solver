@@ -1,18 +1,18 @@
 import { expect } from 'chai';
-import { calcHeuristicValue, calcDistanceOfItem } from "../src/functions/heuristic";
+import { calcHValue, calcDistanceOfItem } from "../src/functions/heuristic";
 import { State, StateItem } from '../src/utils/state';
 import StateItemPosition from '../src/classes/StateItemPosition';
 
 describe('Heuristic Smoke Tests', () => { // the tests container
-    it('should exist calcHeuristicValue function', () => {
-        expect(calcHeuristicValue).to.exist;
+    it('should exist calcHValue function', () => {
+        expect(calcHValue).to.exist;
     });
 
     it('should return a number when call calcHeuristicValue function', () => {
         const initialState: State = [[4,5,8], [null,1,6], [7, 2, 3]];
         const goalState: State = [[1,2,3], [4,5,6], [7, 8, null]];
         const gValue = 0;
-        expect(calcHeuristicValue(initialState, goalState, gValue)).to.be.a('number');
+        expect(calcHValue(initialState, goalState)).to.be.a('number');
     });
 
     it('should exist calcDistanceOfItem function', () => {
@@ -50,47 +50,42 @@ describe('Testing returns of calcDistanceOfItem', () => {
     });
 })
 
-describe('Testing returns of calcHeuristicValue', () => {  
-    it('should return 14 when call calcHeuristicValue function', () => {
+describe('Testing returns of calcHValue', () => {  
+    it('should return 14 when call calcHValue function', () => {
         const initialState: State = [[4,5,8], [null,1,6], [7, 2, 3]];
         const goalState: State = [[1,2,3], [4,5,6], [7, 8, null]];
         const gValue = 0;
-        expect(calcHeuristicValue(initialState, goalState, gValue)).to.equal(14);
+        expect(calcHValue(initialState, goalState)).to.equal(14);
     });
 
 
     it('should return 15 when call calcHeuristicValue function', () => {
         const initialState: State = [[null,5,8], [4,1,6], [7, 2, 3]];
         const goalState: State = [[1,2,3], [4,5,6], [7, 8, null]];
-        const gValue = 1;
-        expect(calcHeuristicValue(initialState, goalState, gValue)).to.equal(15);
+        expect(calcHValue(initialState, goalState)).to.equal(14);
     });
 
     it('should return 15 when call calcHeuristicValue function', () => {
         const initialState: State = [[4,5,8], [7,1,6], [null, 2, 3]];
         const goalState: State = [[1,2,3], [4,5,6], [7, 8, null]];
-        const gValue = 1;
-        expect(calcHeuristicValue(initialState, goalState, gValue)).to.equal(15);
+        expect(calcHValue(initialState, goalState)).to.equal(14);
     });
 
     it('should return 13 when call calcHeuristicValue function', () => {
         const initialState: State = [[4,5,8], [1,null,6], [7, 2, 3]];
         const goalState: State = [[1,2,3], [4,5,6], [7, 8, null]];
-        const gValue = 1;
-        expect(calcHeuristicValue(initialState, goalState, gValue)).to.equal(13);
+        expect(calcHValue(initialState, goalState)).to.equal(12);
     });
 
     it('should return 14 when call calcHeuristicValue function', () => {
         const initialState: State = [[4,null,8], [1,5,6], [7, 2, 3]];
         const goalState: State = [[1,2,3], [4,5,6], [7, 8, null]];
-        const gValue = 2;
-        expect(calcHeuristicValue(initialState, goalState, gValue)).to.equal(14);
+        expect(calcHValue(initialState, goalState)).to.equal(12);
     });
 
     it('should return 12 when call calcHeuristicValue function', () => {
         const initialState: State = [[4,5,8], [1,2,6], [7, null, 3]];
         const goalState: State = [[1,2,3], [4,5,6], [7, 8, null]];
-        const gValue = 2;
-        expect(calcHeuristicValue(initialState, goalState, gValue)).to.equal(12);
+        expect(calcHValue(initialState, goalState)).to.equal(10);
     });
 })

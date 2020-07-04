@@ -1,11 +1,6 @@
 import { State, StateItem } from "../utils/state"
 import StateItemPosition from "../classes/StateItemPosition";
 
-
-function calcHeuristicValue(actualState: State, goalState: State, gValue: number){
-    return gValue + calcHValue(actualState, goalState);
-}
-
 function calcHValue(actualState: State, goalState: State){
     let totalDistance = 0;
     for (let line in actualState){
@@ -28,4 +23,4 @@ function calcDistanceOfItem(item: StateItem, itemPosition: StateItemPosition, go
     return 10; //TODO: Rever esse valor (ou tratamento diferente caso o item buscado não exista no estado objetivo)
 }
 
-export { calcHeuristicValue, calcDistanceOfItem }
+export { calcHValue, calcDistanceOfItem }
