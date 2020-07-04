@@ -32,7 +32,7 @@ function run(goalState: State, frontier: NodeInfo[], expandedStates: State[]): N
                 expandedStates.push(actualNode.state);
             }
             
-            frontier.sort((a, b) => (a.evaluationFunctionValue.f < b.evaluationFunctionValue.f) ? -1 : 1); // Order frontier according to heuristic value of nodes
+            frontier.sort((a, b) => (a.evaluationFunctionValue.f < b.evaluationFunctionValue.f) ? -1 : ((a.evaluationFunctionValue.f === b.evaluationFunctionValue.f) ? ((a.evaluationFunctionValue.g > b.evaluationFunctionValue.g) ? -1 : 1): 1)); // Order frontier according to heuristic value of nodes
             
             return run(goalState, frontier, expandedStates);
         }
