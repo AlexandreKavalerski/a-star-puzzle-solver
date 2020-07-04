@@ -4,7 +4,7 @@ import { State } from '../utils/state';
 import { calcHeuristicValue } from './heuristic';
 import { applyOperation } from './operations';
 
-function generateNodeList(node: NodeInfo, goalState: State, gValue: number){
+function generateNodeList(node: NodeInfo, goalState: State, gValue: number): NodeInfo[]{
     let childrenNodes: NodeInfo[] = [];
     const childUp = generateAndTest(operations.up, node, goalState, gValue);
     if (childUp){
