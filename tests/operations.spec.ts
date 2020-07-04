@@ -1,4 +1,4 @@
-import { expect, Assertion, util } from 'chai';
+import { expect } from 'chai';
 import { applyOperation, moveUpOperation, moveRightOperation, moveDownOperation, moveLeftOperation, getPositionOfNullItem } from "../src/functions/operations";
 import { State, StateItem } from "../src/utils/state";
 import { operations } from '../src/utils/operations';
