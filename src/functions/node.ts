@@ -38,7 +38,12 @@ function generateAndTest(op: operations, node: NodeInfo, goalState: State, gValu
 
 function generateNode(state: State, op: operations, goalState: State, gValue: number, previousNode?: NodeInfo): NodeInfo{
     const hValue = calcHValue(state, goalState);
-    const heuristicValue = new HeuristicValue(gValue, hValue);
+    let heuristicValue = new HeuristicValue(gValue, hValue, (gValue + hValue));
+    if(previousNode){
+        if(heuristicValue.h > previousNode.evaluationFunctionValue.h){ 
+            heuristicValue.f = previousNode.evaluationFunctionValue.f; //Add consistence to h value
+        }
+    }
     return new NodeInfo(heuristicValue, op, state, previousNode);
 }
 

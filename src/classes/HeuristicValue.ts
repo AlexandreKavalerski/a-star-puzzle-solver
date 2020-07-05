@@ -1,13 +1,11 @@
 export default class HeuristicValue {
     g: number;
     h: number;
+    f: number;
 
-    constructor(g: number, h: number){
+    constructor(g: number, h: number, f: number){
         this.g = g;
         this.h = h;
-    }
-
-    get f(){
-        return this.g + this.h;
+        this.f = f;
     }
 }
