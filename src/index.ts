@@ -5,29 +5,20 @@ import { generateNodeList, generateNode, readNode } from './functions/node';
 import { areEqual, includes, isSolvable } from './functions/state';
 import { Frontier } from './utils/frontier';
 
-const initialState: State = [
-    [8,4,0],
-    [7,1,3],
-    [2, 6, 5]
-];
-const finalState: State = [
-    [1,2,3],
-    [4,5,6],
-    [7, 8,0]
-];
-
-const firstNode = generateNode(initialState, operations.none, finalState, 0);
-
-let frontier: Frontier = [firstNode];
-let expandedStates: State[] = [];
-
-console.time('run');
-const finalNode = runAStar(finalState, frontier, expandedStates);
-if(finalNode){
-    readNode(finalNode);
+function AStar(initialState: State, finalState?: State){
+    const goalState: State = finalState ? finalState : [[1,2,3],[4,5,6],[7, 8,0]];
+    if(isSolvable(initialState)){
+        const firstNode = generateNode(initialState, operations.none, goalState, 0);
+        let frontier: Frontier = [firstNode];
+        let expandedStates: State[] = [];
+    
+        const finalNode = runAStarLoop(goalState, frontier, expandedStates);
+    }else{
+        throw new Error('Initial state is not solvable');
+    }
 }
 
-function runAStar(goalState: State, frontier: NodeInfo[], expandedStates: State[]){
+function runAStarLoop(goalState: State, frontier: NodeInfo[], expandedStates: State[]){
     let actualNode = frontier.shift();
     if(actualNode){
         while(!areEqual(actualNode.state, goalState)){
