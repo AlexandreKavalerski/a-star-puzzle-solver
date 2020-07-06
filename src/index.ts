@@ -13,6 +13,7 @@ function AStar(initialState: State, finalState?: State){
         let expandedStates: State[] = [];
     
         const finalNode = runAStarLoop(goalState, frontier, expandedStates);
+        return finalNode;
     }else{
         throw new Error('Initial state is not solvable');
     }
