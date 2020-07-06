@@ -20,7 +20,7 @@ function applyOperation(state: State, op: operations){
 }
 
 function moveUpOperation(state: State): State | null{
-    const nullPosition = getPositionOfNullItem(state);
+    const nullPosition = getPositionOfBlankItem(state);
     const newLinePosition = nullPosition.line - 1;
     if(newLinePosition >= 0){
         const newPosition = new StateItemPosition(newLinePosition, nullPosition.col);
@@ -30,7 +30,7 @@ function moveUpOperation(state: State): State | null{
 }
 
 function moveRightOperation(state: State): State | null{
-    const nullPosition = getPositionOfNullItem(state);
+    const nullPosition = getPositionOfBlankItem(state);
     
     const newColPosition = nullPosition.col + 1;
     if(newColPosition <= 2){
@@ -41,7 +41,7 @@ function moveRightOperation(state: State): State | null{
 }
 
 function moveDownOperation(state: State): State | null{
-    const nullPosition = getPositionOfNullItem(state);
+    const nullPosition = getPositionOfBlankItem(state);
     const newLinePosition = nullPosition.line + 1;
     if(newLinePosition <= 2){
         const newPosition = new StateItemPosition(newLinePosition, nullPosition.col);
@@ -51,7 +51,7 @@ function moveDownOperation(state: State): State | null{
 }
 
 function moveLeftOperation(state: State): State | null{
-    const nullPosition = getPositionOfNullItem(state);
+    const nullPosition = getPositionOfBlankItem(state);
 
     const newColPosition = nullPosition.col - 1;
     if(newColPosition >= 0){
@@ -62,9 +62,9 @@ function moveLeftOperation(state: State): State | null{
 }
 
 
-function getPositionOfNullItem(state: State){
+function getPositionOfBlankItem(state: State){
     for (let line in state){
-        let col = state[line].indexOf(null);
+        let col = state[line].indexOf(0);
         if (col > -1){
             return new StateItemPosition(Number(line), Number(col));
         }
@@ -76,14 +76,14 @@ function changePositions(actualPosition: StateItemPosition, newPosition: StateIt
     const newState: State = cloneState(state); //TODO: Encontrar uma estratégia otimizada pra clonar o array do estado
     const aux = state[newPosition.line][newPosition.col];
 
-    newState[newPosition.line][newPosition.col] = null;
+    newState[newPosition.line][newPosition.col] = 0;
     newState[actualPosition.line][actualPosition.col] = aux;
     
     return newState
 }
 
 function cloneState(state: State){
-    let newState: State = [[null, null, null], [null, null, null], [null, null, null]];
+    let newState: State = [[0, 0, 0], [0, 0, 0], [0, 0, 0]];
     for (let l in state){
         for (let c in state){
             newState[l][c] = state[l][c];
@@ -92,4 +92,4 @@ function cloneState(state: State){
     return newState;
 }
 
-export { applyOperation, moveUpOperation, moveRightOperation, moveDownOperation, moveLeftOperation, getPositionOfNullItem }
+export { applyOperation, moveUpOperation, moveRightOperation, moveDownOperation, moveLeftOperation, getPositionOfBlankItem }
