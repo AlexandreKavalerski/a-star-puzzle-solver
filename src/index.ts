@@ -44,3 +44,5 @@ function runAStarLoop(goalState: State, frontier: NodeInfo[], expandedStates: St
         return actualNode;
     }
 }
+
+export {AStar as solvePuzzle}
