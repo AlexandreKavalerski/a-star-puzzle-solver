@@ -58,7 +58,7 @@ describe('Testing returns of generateNode function', () => {
         const heuristicValuePrevious = new HeuristicValue(0, 0, 0);
         
         const mockedPreviousNode = new NodeInfo(heuristicValuePrevious, operations.none, state);
-        const heuristicValueExpected = new HeuristicValue(3, 10, 0);
+        const heuristicValueExpected = new HeuristicValue(3, 10, 13);
         const expectedNode = new NodeInfo(heuristicValueExpected, operations.up, state, mockedPreviousNode);
         const gValue = 3;
         expect(generateNode(state, operations.up, finalState, gValue, mockedPreviousNode)).to.eql(expectedNode);
@@ -109,7 +109,7 @@ describe('Testing returns of generateNodeList function', () => {
         const expectedChild3 = new NodeInfo(heuristicValue3, operations.down, stateChild3, rootNode);
         
         const stateChild4: State = [[4,5,8], [null,1,6], [7, 2, 3]];
-        const heuristicValue4 = new HeuristicValue(2, 14, 13);
+        const heuristicValue4 = new HeuristicValue(2, 14, 16);
         const expectedChild4 = new NodeInfo(heuristicValue4, operations.left, stateChild4, rootNode);
 
         const childrenList = [expectedChild1, expectedChild2, expectedChild3, expectedChild4];

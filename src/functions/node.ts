@@ -41,7 +41,9 @@ function generateNode(state: State, op: operations, goalState: State, gValue: nu
     let heuristicValue = new HeuristicValue(gValue, hValue, (gValue + hValue));
     if(previousNode){
         if(heuristicValue.h > previousNode.evaluationFunctionValue.h){ 
-            heuristicValue.f = previousNode.evaluationFunctionValue.f; //Add consistence to h value
+            if(previousNode.evaluationFunctionValue.f > heuristicValue.f ){
+                heuristicValue.f = previousNode.evaluationFunctionValue.f; //Add consistence to h value
+            }
         }
     }
     return new NodeInfo(heuristicValue, op, state, previousNode);
