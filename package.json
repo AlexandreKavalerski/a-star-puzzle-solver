@@ -41,5 +41,12 @@
   "bugs": {
     "url": "https://github.com/AlexandreKavalerski/a-star-typescript/issues"
   },
+  "keywords": [
+    "Search Algorithm",
+    "Search Problem",
+    "A Star",
+    "A*",
+    "Typescript"
+  ],
   "homepage": "https://github.com/AlexandreKavalerski/a-star-typescript#readme"
 }
