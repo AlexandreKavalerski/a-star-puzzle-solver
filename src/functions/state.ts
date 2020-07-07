@@ -1,4 +1,4 @@
-import { State, StateItem } from "../utils/state";
+import { State, StateItem, StateAsList } from "../utils/state";
 
 
 // Using this function because literal comparison between 2 types (state1 == state2) always return false
@@ -30,7 +30,8 @@ function isSolvable(state: State){
 }
 
 function quantityOfInversions(state: State): number{
-    const stateList = convertStateInArray(state);
+    let stateList = convertStateInArray(state);
+    stateList = stateList.filter((val) => {return val !== 0}); // Do not consider 0 when counting inversions
     let inversions = 0;
     for(let i in stateList){
         for (let j = Number(i)+1; j < stateList.length; j ++){
@@ -43,16 +44,28 @@ function quantityOfInversions(state: State): number{
 }
 
 //TODO: Melhorar a forma de fazer isso
-function convertStateInArray(state: State): StateItem[]{
-    let stateList: StateItem[] = [];
+function convertStateInArray(state: State): StateAsList{
+    let stateList: StateAsList = [];
     for(let l in state){
         for (let c in state[l]){
-            if(state[l][c] !== 0){// Do not consider 0 when counting inversions
-                stateList.push(state[l][c]);
-            }
+            stateList.push(state[l][c]);
         }
     }
     return stateList;
+}
+
+//TODO: Melhorar a forma de fazer isso
+function convertArrayInState(stateList: StateAsList): State{
+    let state: State = [[0,0,0],[0,0,0],[0,0,0]];
+    for(let l in state){
+        for (let c in state[l]){
+            const item = stateList.shift();
+            if(item){
+                state[l][c] = item;
+            }
+        }
+    }
+    return state;
 }
 
 function readState(state: State){
@@ -63,4 +76,4 @@ function readState(state: State){
     console.log('---------'); 
 }
 
-export { areEqual, includes, readState, isSolvable }
+export { areEqual, includes, readState, isSolvable, convertArrayInState, convertStateInArray }

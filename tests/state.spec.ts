@@ -1,6 +1,6 @@
 import { expect } from 'chai';
-import { areEqual, includes, isSolvable } from '../src/functions/state';
-import { State } from '../src/utils/state';
+import { areEqual, includes, isSolvable, convertArrayInState, convertStateInArray } from '../src/functions/state';
+import { State, StateAsList } from '../src/utils/state';
 
 describe('State Smoke Tests', () => {
     it('Should exist areEqual function', () => {
@@ -31,6 +31,25 @@ describe('State Smoke Tests', () => {
         const state: State = [[4,5,8], [0,1,6], [7, 2, 3]];
         expect(isSolvable(state)).to.be.a('Boolean');
     });
+
+    it('Should exist convertArrayInState function', () => {
+        expect(convertArrayInState).to.exist;
+    });
+
+    it('Should return Array(State) when call convertArrayInState function', () => {
+        const stateList: StateAsList = [0,0,0,0,0,0,0,0,0];
+        expect(convertArrayInState(stateList)).to.be.an('Array');
+    });
+
+    it('Should exist convertStateInArray function', () => {
+        expect(convertStateInArray).to.exist;
+    });
+
+    it('Should return Array when call convertStateInArray function', () => {
+        const state: State = [[0,0,0],[0,0,0],[0,0,0]];
+        expect(convertStateInArray(state)).to.be.an('Array');
+    });
+    
 });
 
 describe('Testing returns of areEqual function', () => {
@@ -144,4 +163,38 @@ describe('Testing returns of isSolvable function', () => {
         expect(isSolvable(state)).to.eql(false);
     });
     
+});
+
+describe('Testing returns of convertArrayInState function', () => {
+    it('Should return this state using this array', () => {
+        const stateList: StateAsList = [1, 2, 3, 4, 5, 6, 7, 8, 0];
+        const expectedState: State = [[1, 2, 3], [4, 5, 6], [7, 8, 0]];
+        expect(convertArrayInState(stateList)).to.be.eql(expectedState);
+    });
+
+    it('Should return this state using this array', () => {
+        const stateList: StateAsList = [4, 5, 8, 1, 2, 6, 7, 3, 0];
+        const expectedState: State = [[4, 5, 8], [1, 2, 6], [7, 3, 0]];
+        expect(convertArrayInState(stateList)).to.be.eql(expectedState);
+    });
+});
+
+describe('Testing returns of convertStateInArray function', () => {
+    it('Should return this array using this state', () => {
+        const state: State = [[1, 2, 3], [4, 5, 6], [7, 8, 0]];
+        const expectedStateList: StateAsList = [1, 2, 3, 4, 5, 6, 7, 8, 0];
+        expect(convertStateInArray(state)).to.be.eql(expectedStateList);
+    });
+    
+    it('Should return this array using this state', () => {
+        const state: State = [[4, 5, 8], [6, 7, 3], [1, 2, 0]];
+        const expectedStateList: StateAsList = [4, 5, 8, 6, 7, 3, 1, 2, 0];
+        expect(convertStateInArray(state)).to.be.eql(expectedStateList);
+    });
+
+    it('Should return this array using this state', () => {
+        const state: State = [[4, 2, 8], [6, 1, 3], [5, 7, 0]];
+        const expectedStateList: StateAsList = [4, 2, 8, 6, 1, 3, 5, 7, 0];
+        expect(convertStateInArray(state)).to.be.eql(expectedStateList);
+    });
 });
