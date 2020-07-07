@@ -48,7 +48,7 @@ const solution = aStar.solvePuzzle(state);
 ```
 
 ## Methods
-> This library provides only one method:
+> Follow the methods this library provides:
 
 ### solvePuzzle(initialState)
 > Solves the 8 Puzzle Game with provided initial state.
@@ -57,31 +57,124 @@ const solution = aStar.solvePuzzle(state);
 
 | Argument | Type    | Options           |
 |----------|---------|-------------------|
-|`initialState`|*Array of Arrays of Number* | 'Any state possible'|
+|`initialState`|*Array of Numbers* | 'Any state possible'|
 
 **Example**
 
 ```js
-const state = [
+const state = [1, 2, 3, 4, 5, 6, 7, 0, 8];
+
+const solution = AStar.solvePuzzle(state);
+/*
+Obs:
+- Pay atention to the order of elements 
+- Internally, this state is interpreted like this:
+    [
     [1, 2, 3],
     [4, 5, 6],
     [7, 0, 8]
-];
+    ]
+*/
 
-const solution = AStar.solvePuzzle(state);
 ```
-
 **Return**
-> This method return an object with: 
-> - 'state' property: last state visited (the goal state)
-> - 'evaluationFunctionValue': an object (wich you can use to access property 'g' that represents the depth traveled)
-> - 'previousNode': another Node object with same properties (that you can use to see expanded nodes and operations applied)
+> This method return an object containg: 
+> - *pathCost*: Total cost of the algorithm (also known as depth of final final state)
+> - *expandedNodes*: quantity of nodes visited by the algorithm from the initial state to the final state
+> - *iterations*: quantity of interation loops inside the algorithm until arrive final state
+> - *solution*: an array of objects containing:
+    >   - *state*: an array with same format the one provided initially
+    >   - *operation*: a String that represents the operation applied to achieve the state.
+    >        - possible values:
+    >           - 'UP_OPERATION'
+    >           - 'RIGHT_OPERATION'
+    >           - 'DOWN_OPERATION'
+    >           - 'LEFT_OPERATION'
+> - *finalNode*: an object wich you can use to access all solution
+>    - properties:
+>       - *operation*: a String that represents the operation applied to achieve the state (values are same indicated above).
+>       -  *evaluationFunctionValue*: an object that represents value of 
+>           - properties:
+>               - *g*: depth of node
+>               - *h*: heuristic value
+>               - *f*: sum of 'g' and 'h'
+>       - *state*: state of node, but in a different format of states provided by 'solution' array (see `convertStateInArray` method below)
+>       - *previousNode*: another object with same properties (represents parent node of this one)
 
 **Obs:**
 - For more examples of how to use, see './examples' folder
 - The goalState considered by the algorithm is:
 
 ![](./images/goal-state.jpg)
+
+### convertStateInArray(state)
+> Receives a multidimensional array (3x3) and return an unidimensional (with 9 positions).
+
+**Arguments**
+
+| Argument | Type    | Options           |
+|----------|---------|-------------------|
+|`state`|*Multidimensional array of Numbers* | 'Any state possible'|
+
+**Example**
+
+```js
+const state = [[1, 2, 3], [4, 5, 6], [7, 0, 8]];
+
+const arr = AStar.convertStateInArray(state);
+
+```
+**Return**
+> This method return an unidimensional array similar to this: 
+> ```js
+> //Considering argument of example below
+> [1, 2, 3, 4, 5, 6, 7, 0, 8]
+
+### convertArrayInState(arr)
+> Does the exact opposite of `convertStateInArray`. Receives an unidimensional array of 9 positions and return  multidimensional one (3x3).
+
+**Arguments**
+
+| Argument | Type    | Options           |
+|----------|---------|-------------------|
+|`arr`|*Unidimensional array of Numbers* | 'Any state possible'|
+
+**Example**
+
+```js
+const arr = [1, 2, 3, 4, 5, 6, 7, 0, 8];
+
+const state = AStar.convertArrayInState(arr);
+
+```
+**Return**
+> This method return a multidimensional array similar to this: 
+> ```js
+> //Considering argument of example below
+> [[1, 2, 3], [4, 5, 6], [7, 0, 8]]
+
+
+### isSolvable(state)
+> Receives a state and returns if it is solvable or not.
+
+**Arguments**
+
+| Argument | Type    | Options           |
+|----------|---------|-------------------|
+|`state`|*Multidimensional array of Numbers* | 'Any state possible'|
+
+**Example**
+
+```js
+const state = [[1, 2, 3], [4, 5, 6], [7, 0, 8]];
+
+const isSolvable: boolean = AStar.isSolvable(state);
+
+```
+**Return**
+> This method return a boolean value indicating if state is solvable or not: 
+> ```js
+> true | false
 
 
 ## Contributing
