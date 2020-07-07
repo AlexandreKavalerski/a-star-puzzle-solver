@@ -1,6 +1,6 @@
 {
   "name": "a-star-puzzle-solver",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "A* search algorithm in TypeScript that solves puzzle game problem",
   "main": "dist/index.js",
   "dependencies": {},
