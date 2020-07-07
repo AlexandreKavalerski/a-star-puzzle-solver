@@ -1,4 +1,4 @@
-import { State, StateItem, StateAsList } from "../utils/state";
+import { State, StateAsList } from "../utils/state";
 
 
 // Using this function because literal comparison between 2 types (state1 == state2) always return false
