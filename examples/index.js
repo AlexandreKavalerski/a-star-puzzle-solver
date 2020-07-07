@@ -48,9 +48,15 @@ function getSolution() {
   const aStar = AStarPuzzleSolver;
   const state = getActualState();
   console.log(state);
-  const solution = aStar.solvePuzzle(state);
-  showResults(solution);
-  viewSolution(solution);
+  try {
+    const solution = aStar.solvePuzzle(state);
+    showResults(solution);
+    viewSolution(solution);
+  } catch (err) {
+    alert(
+      "O estado inicial é solucionável! Por favor, gere outro estado e tente novamente."
+    );
+  }
 }
 
 function showResults(solution) {
