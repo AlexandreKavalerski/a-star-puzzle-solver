@@ -4,7 +4,6 @@ import { State } from '../utils/state';
 import { calcHValue } from './heuristic';
 import { applyOperation } from './operations';
 import HeuristicValue from '../classes/HeuristicValue';
-import { readState } from './state';
 
 function generateNodeList(node: NodeInfo, goalState: State): NodeInfo[]{
     let childrenNodes: NodeInfo[] = [];
@@ -49,15 +48,4 @@ function generateNode(state: State, op: operations, goalState: State, gValue: nu
     return new NodeInfo(heuristicValue, op, state, previousNode);
 }
 
-
-function readNode(node: NodeInfo): NodeInfo{
-    readState(node.state);
-    if(node.previousNode){
-        return readNode(node.previousNode);
-    }
-    else{
-        return node;
-    }
-}
-
-export { generateNodeList, generateNode, readNode }
+export { generateNodeList, generateNode }

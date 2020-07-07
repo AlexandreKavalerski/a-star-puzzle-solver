@@ -68,12 +68,4 @@ function convertArrayInState(stateList: StateAsList): State{
     return state;
 }
 
-function readState(state: State){
-    console.log('---------');
-    for(let l of state){
-        console.log(l);
-    }
-    console.log('---------'); 
-}
-
-export { areEqual, includes, readState, isSolvable, convertArrayInState, convertStateInArray }
+export { areEqual, includes, isSolvable, convertArrayInState, convertStateInArray }

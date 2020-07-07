@@ -1,7 +1,7 @@
 import { operations } from './utils/operations';
 import { State } from "./utils/state";
 import { NodeInfo } from "./classes/Node";
-import { generateNodeList, generateNode, readNode } from './functions/node';
+import { generateNodeList, generateNode } from './functions/node';
 import { areEqual, includes, isSolvable } from './functions/state';
 import { Frontier } from './utils/frontier';
 
