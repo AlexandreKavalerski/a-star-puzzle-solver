@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.isSolvable = exports.readState = exports.includes = exports.areEqual = void 0;
+exports.convertStateInArray = exports.convertArrayInState = exports.isSolvable = exports.includes = exports.areEqual = void 0;
 // Using this function because literal comparison between 2 types (state1 == state2) always return false
 // TODO: melhorar formato de verificação
 function areEqual(state1, state2) {
@@ -32,6 +32,7 @@ function isSolvable(state) {
 exports.isSolvable = isSolvable;
 function quantityOfInversions(state) {
     var stateList = convertStateInArray(state);
+    stateList = stateList.filter(function (val) { return val !== 0; }); // Do not consider 0 when counting inversions
     var inversions = 0;
     for (var i in stateList) {
         for (var j = Number(i) + 1; j < stateList.length; j++) {
@@ -47,20 +48,24 @@ function convertStateInArray(state) {
     var stateList = [];
     for (var l in state) {
         for (var c in state[l]) {
-            if (state[l][c] !== 0) { // Do not consider 0 when counting inversions
-                stateList.push(state[l][c]);
-            }
+            stateList.push(state[l][c]);
         }
     }
     return stateList;
 }
-function readState(state) {
-    console.log('---------');
-    for (var _i = 0, state_1 = state; _i < state_1.length; _i++) {
-        var l = state_1[_i];
-        console.log(l);
+exports.convertStateInArray = convertStateInArray;
+//TODO: Melhorar a forma de fazer isso
+function convertArrayInState(stateList) {
+    var state = [[0, 0, 0], [0, 0, 0], [0, 0, 0]];
+    for (var l in state) {
+        for (var c in state[l]) {
+            var item = stateList.shift();
+            if (item) {
+                state[l][c] = item;
+            }
+        }
     }
-    console.log('---------');
+    return state;
 }
-exports.readState = readState;
+exports.convertArrayInState = convertArrayInState;
 //# sourceMappingURL=state.js.map
