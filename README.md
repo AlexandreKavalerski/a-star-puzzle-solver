@@ -1,5 +1,6 @@
 # A Star Puzzle Solver
 
+#### View Live project [here](https://iac-puzzle-game.netlify.app/)
 A TypeScript lib that solves Puzzle Game problem using the A* Algorithm
 
 ## Installation
