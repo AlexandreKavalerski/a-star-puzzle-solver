@@ -1,18 +1,45 @@
 {
-  "name": "a-star-typescript",
-  "version": "0.0.1",
-  "description": "A* search algorithm in TypeScript",
+  "name": "a-star-puzzle-solver",
+  "version": "1.0.0",
+  "description": "A* search algorithm in TypeScript that solves puzzle game problem",
   "main": "dist/index.js",
   "dependencies": {},
   "devDependencies": {
+    "@types/chai": "^4.2.11",
+    "@types/mocha": "^7.0.2",
+    "chai": "^4.2.0",
+    "mocha": "^8.0.1",
     "nodemon": "^2.0.4",
-    "typescript": "^3.9.6"
+    "rimraf": "^3.0.2",
+    "ts-node": "^8.10.2",
+    "typescript": "^3.9.6",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.12"
   },
+  "files":[
+    "dist",
+    "lib"
+  ],
   "scripts": {
+    "clear": "rimraf lib",
+    "create:lib-normal": "node_modules/.bin/webpack --output-filename a-star-puzzle-solver.umd.js",
+    "create:lib-min": "node_modules/.bin/webpack --output-filename a-star-puzzle-solver.umd.min.js -p",
+    "create:lib": "npm run create:lib-normal && npm run create:lib-min",
+    "build": "npm run clear && npm run create:lib",
+    "build:w": "npm run build -- --watch",
     "start:ts": "tsc --watch",
     "start:js": "nodemon ./dist/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha --require ts-node/register --extensions ts,tsx --watch-files src 'tests/**/*.{ts,tsx}'",
+    "test:tdd": "npm test -- --watch"
   },
-  "author": "Alexandre Kavalerski",
-  "license": "MIT"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlexandreKavalerski/a-star-typescript.git"
+  },
+  "author": "Alexandre Kavalerski <kavalerskialexandre@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AlexandreKavalerski/a-star-typescript/issues"
+  },
+  "homepage": "https://github.com/AlexandreKavalerski/a-star-typescript#readme"
 }
