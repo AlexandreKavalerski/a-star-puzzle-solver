@@ -1,6 +1,5 @@
 $(document).ready(function () {
-  const initialState = [0, 1, 2, 3, 4, 5, 6, 7, 8];
-  initialState.sort((a, b) => Math.random() - Math.random());
+  const initialState = [4, 5, 8, 0, 1, 6, 7, 2, 3];
 
   renderTDList(initialState);
   $("#btnRandomize").on("click", function () {
