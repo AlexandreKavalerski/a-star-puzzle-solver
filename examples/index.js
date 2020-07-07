@@ -1,5 +1,5 @@
 $(document).ready(function () {
-  const initialState = [4, 5, 8, 0, 1, 6, 7, 2, 3];
+  const initialState = [1, 8, 2, 0, 4, 3, 7, 6, 5];
 
   renderTDList(initialState);
   $("#btnRandomize").on("click", function () {
@@ -25,56 +25,44 @@ function renderTDList(stateList) {
 
 function getActualState() {
   const list = $("td.td-puzzle");
-  let state = [[], [], []];
   const stateList = [];
   for (let td of list) {
-    stateList.push($(td).text());
+    stateList.push(Number($(td).text()));
   }
 
-  for (let i in stateList) {
-    if (i <= 2) {
-      state[0].push(Number(stateList[i]));
-    } else if (i <= 5) {
-      state[1].push(Number(stateList[i]));
-    } else {
-      state[2].push(Number(stateList[i]));
-    }
-  }
-  return state;
+  return stateList;
 }
 
 function getSolution() {
-  const aStar = AStarPuzzleSolver;
   const state = getActualState();
-  console.log(state);
   try {
-    const solution = aStar.solvePuzzle(state);
-    showResults(solution);
-    viewSolution(solution);
+    const result = AStarPuzzleSolver.solvePuzzle(state);
+
+    showResults(result);
+    viewSolution(result);
   } catch (err) {
-    alert(
-      "O estado inicial é solucionável! Por favor, gere outro estado e tente novamente."
-    );
+    alert(err);
   }
 }
 
-function showResults(solution) {
+function showResults(result) {
   const markup = `
   <li>Problema resolvido!</li>
-  <li>Custo final: ${solution.evaluationFunctionValue.g}</li>
-  <li>Nós expandidos: ?</li>
-  <li>Início da fronteira: ?</li>
+  <li>Custo do caminho: ${result.pathCost}</li>
+  <li>Nós expandidos: ${result.expandedNodes}</li>
+  <li>Iterações: ${result.iterations}</li>
   `;
 
   $("#results").html(markup);
 }
 
-async function viewSolution(solution) {
+async function viewSolution(result) {
   // const markup = `
   // `;
 
-  let states = getListOfStates(solution, []);
-  awaitsToRender(states);
+  const states = result.solution.map((s) => s.state);
+  const operations = result.solution.map((s) => s.operation);
+  awaitsToRender(states, operations);
 
   // $("#solution").html(markup);
 }
@@ -83,12 +71,17 @@ function timer(ms) {
   return new Promise((res) => setTimeout(res, ms));
 }
 
-async function awaitsToRender(states) {
-  for (let s of states) {
-    console.log(s);
+async function awaitsToRender(states, operations) {
+  for (let i in states) {
     await timer(1200);
-    renderTDList(transformStateInArray(s));
+    renderTDList(states[i]);
+    showOperation(operations[i]);
   }
+}
+
+function showOperation(op) {
+  $(".operation-item").attr("hidden", "");
+  $(`#MOVE_${op}`).removeAttr("hidden");
 }
 
 function transformStateInArray(state) {

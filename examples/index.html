@@ -6,13 +6,13 @@
     <title>A Star Puzzle Solver - Example 01</title>
     <script src="../lib/a-star-puzzle-solver.umd.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css" integrity="sha512-xA6Hp6oezhjd6LiLZynuukm80f8BoZ3OpcEYaqKoCV3HKQDrYjDE1Gu8ocxgxoXmwmSzM4iqPvCsOkQNiu41GA==" crossorigin="anonymous" />
 </head>
 <body>
 
     <div class="container">
         <div class="col">
             <div class="row">
-
                 <div class="col-md-4 table-responsive">
                     <table class="table table-bordered">
                         <tr>
@@ -32,6 +32,12 @@
                         </tr>
                     </table>
                 </div>
+                <div class="align-middle" id="operations">
+                    <i id="MOVE_UP_OPERATION" hidden class="operation-item fas fa-arrow-up"></i>
+                    <i id="MOVE_RIGHT_OPERATION" hidden class="operation-item fas fa-arrow-right"></i>
+                    <i id="MOVE_DOWN_OPERATION" hidden class="operation-item fas fa-arrow-down"></i>
+                    <i id="MOVE_LEFT_OPERATION" hidden class="operation-item fas fa-arrow-left"></i>
+                </div>
             </div>
             <div class="row">
                 <div class="container align-center">
@@ -44,14 +50,6 @@
                 <ul id="results">
                 </ul>
             </div>
-
-            <div class="row">
-                <div id="viewSolution">
-                    <table class="table table-bordered tb-solution">
-
-                    </table>
-                </div>
-            </div>
         </div>
     </div>
 
@@ -60,6 +58,8 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/js/all.min.js" integrity="sha512-M+hXwltZ3+0nFQJiVke7pqXY7VdtWW2jVG31zrml+eteTP7im25FdwtLhIBTWkaHRQyPrhO2uy8glLMHZzhFog==" crossorigin="anonymous"></script>
+
     <script src="index.js"></script>
 </body>
 </html>
