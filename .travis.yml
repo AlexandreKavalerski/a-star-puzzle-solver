@@ -1,9 +1,9 @@
 language: node_js
 
 version:
-  - 12
+ - 12
 
-  before_script:
+before_script:
   - npm run build
 
 after_success:
