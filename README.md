@@ -1,5 +1,7 @@
 # A Star Puzzle Solver
 
+[![Build Status](https://travis-ci.org/AlexandreKavalerski/a-star-puzzle-solver.svg?branch=master)](https://travis-ci.org/AlexandreKavalerski/a-star-puzzle-solver)
+
 #### View an example of use [here](https://iac-puzzle-game.netlify.app/)
 A TypeScript lib that solves Puzzle Game problem using the A* Algorithm
 
