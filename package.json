@@ -34,12 +34,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/AlexandreKavalerski/a-star-typescript.git"
+    "url": "git+https://github.com/AlexandreKavalerski/a-star-puzzle-solver.git"
   },
   "author": "Alexandre Kavalerski <kavalerskialexandre@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/AlexandreKavalerski/a-star-typescript/issues"
+    "url": "https://github.com/AlexandreKavalerski/a-star-puzzle-solver/issues"
   },
   "keywords": [
     "Search Algorithm",
@@ -48,5 +48,5 @@
     "A*",
     "Typescript"
   ],
-  "homepage": "https://github.com/AlexandreKavalerski/a-star-typescript#readme"
+  "homepage": "https://github.com/AlexandreKavalerski/a-star-puzzle-solver#readme"
 }
