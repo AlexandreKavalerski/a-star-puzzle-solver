@@ -1,0 +1,10 @@
+import { State } from "../utils/state";
+import { operations } from "../utils/operations";
+import StateItemPosition from "../classes/StateItemPosition";
+declare function applyOperation(state: State, op: operations): State | null | undefined;
+declare function moveUpOperation(state: State): State | null;
+declare function moveRightOperation(state: State): State | null;
+declare function moveDownOperation(state: State): State | null;
+declare function moveLeftOperation(state: State): State | null;
+declare function getPositionOfBlankItem(state: State): StateItemPosition;
+export { applyOperation, moveUpOperation, moveRightOperation, moveDownOperation, moveLeftOperation, getPositionOfBlankItem };

@@ -3,6 +3,7 @@
   "version": "2.0.1",
   "description": "A* search algorithm in TypeScript that solves puzzle game problem",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "dependencies": {},
   "devDependencies": {
     "@types/chai": "^4.2.11",
